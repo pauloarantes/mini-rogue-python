@@ -1,10 +1,10 @@
 from random import randint, shuffle, choice
-import matplotlib.pyplot as plt
-import numpy as np
+# import matplotlib.pyplot as plt
+# import numpy as np
 import sys
 import pickle
 import os.path
-import pandas as pd
+# import pandas as pd
 
 
 class MiniRogue:
@@ -40,47 +40,47 @@ class MiniRogue:
         self.poison_active = False
 
 
-    def save_game(self):
-        save = [self.armor, self.life, self.gold, self.food, self.xp, self.spells, self.rank, self.dungeon_area, self.dungeon_level, self.difficulty]
-        with open("rogue_save.txt", "wb") as f:
-            pickle.dump(save, f)
+    # def save_game(self):
+        # save = [self.armor, self.life, self.gold, self.food, self.xp, self.spells, self.rank, self.dungeon_area, self.dungeon_level, self.difficulty]
+        # with open("rogue_save.txt", "wb") as f:
+        #     pickle.dump(save, f)
 
 
-    def load_game(self):
-        with open("rogue_save.txt", "rb") as f:
-            load = pickle.load(f)
-        self.armor, self.life, self.gold, self.food, self.xp, self.spells, self.rank, self.dungeon_area, self.dungeon_level, self.difficulty = load
+    # def load_game(self):
+        # with open("rogue_save.txt", "rb") as f:
+        #     load = pickle.load(f)
+        # self.armor, self.life, self.gold, self.food, self.xp, self.spells, self.rank, self.dungeon_area, self.dungeon_level, self.difficulty = load
 
 
     def start(self):
-        if os.path.isfile('rogue_save.txt'):
-            load_game = raw_input("Continue previous game? [y/n]")
-            if load_game == 'y':
-                self.load_game()
-                self.stats(mode='all')
-                self.explore_area()
+        # if os.path.isfile('rogue_save.txt'):
+        #     load_game = raw_input("Continue previous game? [y/n]")
+        #     if load_game == 'y':
+        #         self.load_game()
+        #         self.stats(mode='all')
+        #         self.explore_area()
 
-            else:
-                print("\nYou've entered the cave to Level 1: Black Sewers\n")
-                self.stats(mode='char')
-                if self.gold == 5: self.difficulty = 0
-                elif self.gold == 3: self.difficulty = 2
-                elif self.gold == 2: self.difficulty = 4
-                elif self.gold == 1: self.difficulty = 6
-                self.explore_area()
+            # else:
+        print("\nYou've entered the cave to Level 1: Black Sewers\n")
+        self.stats(mode='char')
+        if self.gold == 5: self.difficulty = 0
+        elif self.gold == 3: self.difficulty = 2
+        elif self.gold == 2: self.difficulty = 4
+        elif self.gold == 1: self.difficulty = 6
+        self.explore_area()
 
-        else:
-            print("\nYou've entered the cave to Level 1: Black Sewers\n")
-            self.stats(mode='char')
-            if self.gold == 5: self.difficulty = 0
-            elif self.gold == 3: self.difficulty = 2
-            elif self.gold == 2: self.difficulty = 4
-            elif self.gold == 1: self.difficulty = 6
-            self.explore_area()
+        # else:
+        #     print("\nYou've entered the cave to Level 1: Black Sewers\n")
+        #     self.stats(mode='char')
+        #     if self.gold == 5: self.difficulty = 0
+        #     elif self.gold == 3: self.difficulty = 2
+        #     elif self.gold == 2: self.difficulty = 4
+        #     elif self.gold == 1: self.difficulty = 6
+        #     self.explore_area()
         if self.win:
             print("You've beat the game!")
-            print("Here's you dice distribution over this game:")
-            self.plot_die()
+            # print("Here's you dice distribution over this game:")
+            # self.plot_die()
             sys.exit()
 
     def stats(self, mode='all'):
@@ -110,8 +110,8 @@ class MiniRogue:
             self.alive = False
             self.final_score()
             print("You died. Game over.")
-            print("\nHere's you dice distribution over this game:")
-            self.plot_die()
+            # print("\nHere's you dice distribution over this game:")
+            # self.plot_die()
             sys.exit()
 
 
@@ -271,8 +271,8 @@ class MiniRogue:
         shuffle(cards_this_level)
         boss_area = self.dungeon_area == self.blueprints[self.dungeon_level-1][-1:][0]
         print("\nYou've entered Area {} from Level {}".format(self.dungeon_area, self.dungeon_level))
-        self.save_game()
-        print(">> Checkpoint - Game saved. <<\n")
+        # self.save_game()
+        # print(">> Checkpoint - Game saved. <<\n")
 
         encounter_1 = cards_this_level.pop()
         if boss_area: print("Area {} Map: [X] -> 2[] -> [] -> 2[] -> Boss Monster".format(self.dungeon_area))
@@ -693,29 +693,29 @@ class MiniRogue:
                       self.armor + self.food
         if self.win: final_score += 2
         print("\n======>> Your final score is {} <<======\n".format(final_score))
-        player_name = raw_input("Enter your name for the Leaderboard: ")
-        difficulty = ['Casual', 'Normal', 'Hard', 'Impossible'][self.difficulty//2]
-        new_score = pd.DataFrame(data=[[player_name, final_score, difficulty]])
-        new_score.columns = ['Player', 'Final Score', 'Difficulty']
-        if os.path.isfile('leaderboards.csv'):
-            df = pd.read_csv('leaderboards.csv')
-            df = pd.concat([df, new_score], ignore_index=True)
-            df.to_csv('leaderboards.csv', index=False)
-            print()
-            for d in df['Difficulty'].unique():
-                tmp = df[df['Difficulty'] == d]
-                tmp = tmp.sort_values(by='Final Score', ascending=False)
-                tmp.reset_index(inplace=True, drop=True)
-                tmp.index += 1
-                print("Leaderboard [{}]".format(d))
-                print(tmp.iloc[:,:2].head())
-                print()
-        else:
-            print()
-            new_score.to_csv('leaderboards.csv', index=False)
-            new_score.index += 1
-            print("Leaderboard [{}]".format(difficulty))
-            print(new_score.iloc[:,:2].head())
+        # player_name = raw_input("Enter your name for the Leaderboard: ")
+        # difficulty = ['Casual', 'Normal', 'Hard', 'Impossible'][self.difficulty//2]
+        # new_score = pd.DataFrame(data=[[player_name, final_score, difficulty]])
+        # new_score.columns = ['Player', 'Final Score', 'Difficulty']
+        # if os.path.isfile('leaderboards.csv'):
+        #     df = pd.read_csv('leaderboards.csv')
+        #     df = pd.concat([df, new_score], ignore_index=True)
+        #     df.to_csv('leaderboards.csv', index=False)
+        #     print()
+        #     for d in df['Difficulty'].unique():
+        #         tmp = df[df['Difficulty'] == d]
+        #         tmp = tmp.sort_values(by='Final Score', ascending=False)
+        #         tmp.reset_index(inplace=True, drop=True)
+        #         tmp.index += 1
+        #         print("Leaderboard [{}]".format(d))
+        #         print(tmp.iloc[:,:2].head())
+        #         print()
+        # else:
+        #     print()
+        #     new_score.to_csv('leaderboards.csv', index=False)
+        #     new_score.index += 1
+        #     print("Leaderboard [{}]".format(difficulty))
+        #     print(new_score.iloc[:,:2].head())
 
 
     def combat(self, boss=False):
