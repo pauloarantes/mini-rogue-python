@@ -10,7 +10,7 @@ It does have input limitations. For example, inputting anything else in a [y/n] 
 By the end of game (if you die or win) a plot of your dice roll distribution will be plotted, and after closing it you can input your name into a local Leaderboard divided by difficulty level.
 
 ## How to run it?
-Just copy the repository to any file, cd into it, and type `python mini_rogue.py` if you have python 3+ or `python mini_rogue_py2.py` if you have python 2 installed.
+Just copy the repository to any folder, cd into it, and type `python mini_rogue.py` if you have python 3+ or `python mini_rogue_py2.py` if you have python 2 installed.
 
 Required libraries are:
 numpy
