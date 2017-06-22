@@ -10,11 +10,13 @@ It does have input limitations. For example, inputting anything else in a [y/n] 
 By the end of game (if you die or win) a plot of your dice roll distribution will be plotted, and after closing it you can input your name into a local Leaderboard divided by difficulty level.
 
 ## How to run it?
-Just copy the repository to any folder, cd into it, and type `python mini_rogue.py` if you have python 3+ or `python mini_rogue_py2.py` if you have python 2 installed.
+Just copy the repository to any folder, cd into it, and type `python mini_rogue.py` if you have python 3+ or `python mini_rogue_py2.py` if you have python 2 installed. 
 
 Required libraries are:
 numpy
 pandas
 matplotlib
+
+You can also run directly from an Android device, simply download QPython (https://play.google.com/store/apps/details?id=org.qpython.qpy) and run the mobile version `mini_rogue_qpy.py` from it; this version doesn't have leaderboards, save/load game, and dice plot so it doesn't require any additional library installation from QPython terminal. This version also works on a computer if you don't want ot install the required libraries above.
 
 Hope you have fun!
